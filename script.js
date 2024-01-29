@@ -41,7 +41,8 @@ function createImage(path) {
 function createVideo(path) {
   const video = createImageOrVideoElement(path, true);
   video.setAttribute("autoplay", true);
-  video.setAttribute("loop", true); // Agregamos el atributo loop
+  video.setAttribute("loop", true);
+  video.removeAttribute("controls"); // Eliminamos el atributo controls
   return video;
 }
 
