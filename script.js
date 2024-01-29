@@ -85,10 +85,22 @@ function createImageWithAddress(ruta) {
 }
 
 const audio = new Audio('./music/lifetime.mp3');
+let audioPlaying = false;
 
 document.addEventListener('DOMContentLoaded', () => {
-    audio.play();
+    // Wait for a user interaction to start playing the audio
+    document.addEventListener('click', startAudioOnUserInteraction);
 });
+
+function startAudioOnUserInteraction() {
+    if (!audioPlaying) {
+        audio.play();
+        audioPlaying = true;
+    }
+
+    // Remove the event listener after the first interaction
+    document.removeEventListener('click', startAudioOnUserInteraction);
+}
 
 window.addEventListener('beforeunload', () => {
     audio.pause();
