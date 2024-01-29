@@ -11,22 +11,6 @@ const mediaItems = [
     { type: 'image', source: './images/10.png' },
 ];
 
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.2,
-};
-
-const observer = new IntersectionObserver(handleIntersection, observerOptions);
-
-mediaItems.forEach((item, index) => {
-    const element = createMediaElement(item);
-    galery.appendChild(element);
-    if (item.type === 'video') {
-        observer.observe(element);
-    }
-});
-
 function createMediaElement(item) {
     if (item.type === 'image') {
         return createImage(item.source);
@@ -43,29 +27,17 @@ function createImage(ruta) {
 }
 
 function createVideo(source) {
-    const video = document.createElement('video');
-    video.src = source;
-    video.classList.add('media');
-    video.autoplay = false;
-    video.muted = true;
-    return video;
-}
+  const video = document.createElement('video');
+  video.src = source;
+  video.classList.add('media');
+  video.autoplay = true;  // Establece autoplay en true
+  video.muted = true;
 
-function handleIntersection(entries) {
-    entries.forEach(entry => {
-        const media = entry.target;
+  video.addEventListener('error', (event) => {
+      console.error('Error al cargar o reproducir el video:', event);
+  });
 
-        if (entry.isIntersecting) {
-            if (media.tagName === 'VIDEO' && media.paused) {
-                media.play();
-            }
-        } else {
-            if (media.tagName === 'VIDEO') {
-                media.pause();
-                media.currentTime = 0;
-            }
-        }
-    });
+  return video;
 }
 
 function createImageForm(link) {
@@ -141,8 +113,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const invitationsButton = document.getElementById("invitations-button");
 
   invitationsButton.addEventListener("click", () => {
-    invitationsContent.style.display = "block";
-    invitationsButton.style.display = "none";
-    playMusic();
+      invitationsContent.style.display = "block";
+      invitationsButton.style.display = "none";
+      playMusic();
+      
+      // Agregar elementos al galery
+      mediaItems.forEach(item => {
+          const mediaElement = createMediaElement(item);
+          galery.appendChild(mediaElement);
+      });
   });
 });
