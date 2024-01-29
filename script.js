@@ -1,49 +1,43 @@
 const galery = document.getElementById("galery");
 
-const mediaItems = [
-  { type: 'image', path: "./images/2.png" },
-  { type: 'image', path: "./images/3.png" },
-  { type: 'image', path: "./images/4.png" },
-  { type: 'video', path: "./videos/5.mp4" },
-  { type: 'image', path: "./images/6.png" },
-  { type: 'video', path: "./videos/8.mp4" },
-  { type: 'video', path: "./videos/9.mp4" },
-  { type: 'image', path: "./images/10.png" },
+const images = [
+  "./images/2.png",
+  "./images/3.png",
+  "./images/4.png",
+  "./videos/5.gif",
+  "./images/6.png",
+  "./images/8.png",
+  "./images/9.png",
+  "./images/10.png",
 ];
 
-mediaItems.forEach((item, index) => {
-  const isVideo = item.type === 'video';
+images.forEach((ruta, index) => {
+  const isGif = ruta.toLowerCase().endsWith(".gif");
   const isImage6 = index === 4;
   const isImage10 = index === 7;
+
   const element = isImage6
-    ? isVideo ? createVideoWithForm(item.path) : createImageWithAddress(item.path)
+    ? createImageWithAddress(ruta)
     : isImage10
-    ? isVideo ? createVideoWithForm(item.path) : createImage(item.path)
-    : isVideo ? createVideo(item.path) : createImage(item.path);
+    ? createImageWithForm(ruta)
+    : createImage(ruta, isGif);
 
   galery.appendChild(element);
 });
 
-function createImageOrVideoElement(path, isVideo = false) {
-  const element = isVideo ? document.createElement("video") : document.createElement("img");
-  element.src = path;
-  element.classList.add("media");
-  if (isVideo) {
-    element.setAttribute("controls", true);
+function createImage(ruta, isGif = false) {
+  const image = document.createElement("img");
+  image.src = ruta;
+  image.classList.add("image");
+
+  // Set the 'loop' attribute to false for non-GIF images and true for GIFs
+  if (isGif) {
+    image.setAttribute("loop", "true");
+  } else {
+    image.setAttribute("loop", "false");
   }
-  return element;
-}
 
-function createImage(path) {
-  return createImageOrVideoElement(path);
-}
-
-function createVideo(path) {
-  const video = createImageOrVideoElement(path, true);
-  video.setAttribute("autoplay", true);
-  video.setAttribute("loop", true);
-  video.removeAttribute("controls"); // Eliminamos el atributo controls
-  return video;
+  return image;
 }
 
 function createImageForm(link) {
@@ -53,10 +47,10 @@ function createImageForm(link) {
   return image;
 }
 
-function createVideoWithForm(link) {
+function createImageWithForm(link) {
   const container = document.createElement("div");
 
-  const media = createImageOrVideoElement(link, true);
+  const image = createImage(link);
 
   const button = document.createElement("button");
   button.textContent = "";
@@ -67,7 +61,7 @@ function createVideoWithForm(link) {
   });
 
   container.style.position = "relative";
-  container.appendChild(media);
+  container.appendChild(image);
 
   button.style.position = "absolute";
   button.style.top = "92%";
@@ -80,10 +74,10 @@ function createVideoWithForm(link) {
   return container;
 }
 
-function createImageWithAddress(path) {
+function createImageWithAddress(ruta) {
   const container = document.createElement("div");
 
-  const media = createImageOrVideoElement(path);
+  const image = createImage(ruta);
 
   const button = document.createElement("button");
   button.textContent = "";
@@ -94,7 +88,7 @@ function createImageWithAddress(path) {
   });
 
   container.style.position = "relative";
-  container.appendChild(media);
+  container.appendChild(image);
 
   button.style.position = "absolute";
   button.style.top = "80%";
