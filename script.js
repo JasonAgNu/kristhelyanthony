@@ -29,13 +29,7 @@ function createImage(ruta, isGif = false) {
   const image = document.createElement("img");
   image.src = ruta;
   image.classList.add("image");
-
-  // Set the 'loop' attribute to false for non-GIF images and true for GIFs
-  if (isGif) {
-    image.setAttribute("loop", "true");
-  } else {
-    image.setAttribute("loop", "false");
-  }
+  image.setAttribute("loop", "false");
 
   return image;
 }
