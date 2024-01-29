@@ -13,7 +13,8 @@ const images = [
 
 images.forEach((ruta, index) => {
     const isImage6 = index === 4;
-    const element = isImage6 ? createImageWithAddress(ruta) : createImage(ruta);
+    const isImage10 = index === 7;
+    const element = isImage6 ? createImageWithAddress(ruta) : (isImage10 ? createImageWithForm(ruta) : createImage(ruta));
     galery.appendChild(element);
 });
 
@@ -23,12 +24,6 @@ function createImage(ruta) {
     image.classList.add('image');
     return image;
 }
-
-images.forEach((link, index) => {
-    const isImage10 = index === 7;
-    const element = isImage10 ? createImageWithForm(link) : createImage(link);
-    galery.appendChild(element);
-});
 
 function createImageForm(link) {
     const image = document.createElement('img');
@@ -53,7 +48,7 @@ function createImageWithForm(link) {
     container.appendChild(image);
 
     button.style.position = 'absolute';
-    button.style.top = '80%';
+    button.style.top = '92%';
     button.style.left = '50%';
     button.style.transform = 'translate(-50%, -50%)';
     button.style.zIndex = '1';
