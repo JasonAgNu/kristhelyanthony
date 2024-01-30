@@ -1,7 +1,7 @@
 const galery = document.getElementById("galery");
 
 const images = [
-  "./images/2.png",
+  "./videos/2.gif",
   "./videos/3.gif",
   "./videos/4.gif",
   "./videos/5.gif",
