@@ -113,9 +113,9 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       invitationsContent.style.display = "block";
       invitationsButton.style.display = "none";
-      playMusic();
-
       wrapContainer.style.display = "none";
     }, 1000);
+    playMusic();
+
   });
 });
