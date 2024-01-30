@@ -96,7 +96,7 @@ function createImageWithAddress(ruta) {
 }
 
 function playMusic() {
-  const musicPath = "./music/lifetime.mp3";
+  const musicPath = "./music/song.mp3";
 
   const audio = new Audio(musicPath);
   audio.play();
@@ -107,10 +107,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const invitationsContent = document.getElementById("invitations-content");
   const invitationsButton = document.getElementById("invitations-button");
+  const wrapContainer = document.querySelector(".wrap");
 
   invitationsButton.addEventListener("click", () => {
     invitationsContent.style.display = "block";
     invitationsButton.style.display = "none";
     playMusic();
+
+    wrapContainer.style.display = "none";
   });
 });

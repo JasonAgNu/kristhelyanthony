@@ -11,6 +11,14 @@ body {
   align-items: center;
 }
 
+.wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
 .image {
   max-width: 100%;
   height: auto;
@@ -26,4 +34,23 @@ body {
 .img {
   width: 100%;
   height: auto;
+}
+
+.element {
+  width: 250px;
+  height: 205px;
+  background: none;
+  background-image: url('/images/sobre.png');
+  background-size: cover;
+  position: relative;
+  top: -500px;
+  border: none;
+}
+
+.element:hover {
+  width: 250px;
+  height: 260px;
+  background-image: url('/images/env.png');
+  cursor: pointer;
+  top: -575px;
 }
