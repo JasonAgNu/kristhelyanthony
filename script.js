@@ -110,10 +110,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const wrapContainer = document.querySelector(".wrap");
 
   invitationsButton.addEventListener("click", () => {
-    invitationsContent.style.display = "block";
-    invitationsButton.style.display = "none";
-    playMusic();
+    setTimeout(() => {
+      invitationsContent.style.display = "block";
+      invitationsButton.style.display = "none";
+      playMusic();
 
-    wrapContainer.style.display = "none";
+      wrapContainer.style.display = "none";
+    }, 1000);
   });
 });
