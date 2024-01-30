@@ -2,13 +2,13 @@ const galery = document.getElementById("galery");
 
 const images = [
   "./images/2.png",
-  "./images/3.png",
-  "./images/4.png",
+  "./videos/3.gif",
+  "./videos/4.gif",
   "./videos/5.gif",
-  "./images/6.png",
-  "./images/8.png",
-  "./images/9.png",
-  "./images/10.png",
+  "./videos/6.gif",
+  "./videos/8.gif",
+  "./videos/9.gif",
+  "./videos/10.gif",
 ];
 
 images.forEach((ruta, index) => {
