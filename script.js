@@ -96,7 +96,7 @@ function createImageWithAddress(ruta) {
 }
 
 function playMusic() {
-  const musicPath = "./music/lifetime.mp3";
+  const musicPath = "./music/song.mp3";
 
   const audio = new Audio(musicPath);
   audio.play();
